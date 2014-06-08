@@ -1,7 +1,8 @@
 INPUT_FILES=$(wildcard *-sentences.txt)
+ADDITIONAL_PASSWORD_FILES=$(wildcard *-passwords.txt)
 INTERMEDIATE_FILES=$(patsubst %.txt,%_short.txt,$(INPUT_FILES))
 OUTPUT_FILES=$(patsubst %_short.txt,%_short_firstletters_long.txt,$(INTERMEDIATE_FILES)) $(patsubst %_short.txt,%_short_randomletters_long.txt,$(INTERMEDIATE_FILES))  $(patsubst %_short.txt,%_short_secondletters_long.txt,$(INTERMEDIATE_FILES)) 
-ENTROPY_FILES=$(patsubst %.txt,%.entropy,$(INPUT_FILES) $(INTERMEDIATE_FILES) $(OUTPUT_FILES))
+ENTROPY_FILES=$(patsubst %.txt,%.entropy,$(INPUT_FILES) $(INTERMEDIATE_FILES) $(OUTPUT_FILES) $(ADDITIONAL_PASSWORD_FILES))
 
 all: entropy.txt $(INTERMEDIATE_FILES) $(OUTPUT_FILES)
 	cat $<
